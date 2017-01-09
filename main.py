@@ -16,11 +16,17 @@ user_info = gitapi.users(git_user).get()
 #GET /users/:user/repos
 repos = gitapi.users(git_user).repos().get()
 #repos_print = json.loads(repos)
-#print json.dumps(repos, indent=4, sort_keys=True)
+#print json.dumps(repos_print, indent=4, sort_keys=True)
 #print repos[0]['name']
 
 for index in range(len(repos)):
-    print repos[index]['name']
+    repo_name = repos[index]['name']
+    print repo_name
+    # /repos/:user/:reponame/languages
+    languages_json = gitapi.repos(git_user)(repo_name).languages().get()
+    print languages_json.keys()
 
-for repo in repos:
-    print repo['clone_url']
+
+
+#for repo in repos:
+#    print repo['clone_url']
